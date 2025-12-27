@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Zarezerwuj
+{% endblock %}
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="panelUtworzenia">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Zarezerwuj</button>
+        </form>
+    </div>
+{% endblock %}
