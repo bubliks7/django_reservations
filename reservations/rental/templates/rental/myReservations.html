@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Twoje rezerwacje
+{% endblock %}
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Moje rezerwacje</h1>
+    <div class="container">
+        {% for rezerwacja in rezerwacje %}
+            <div class="panelRezerwacji">
+                <p>{{ rezerwacja.auto }}</p>
+                <p>od: {{ rezerwacja.data_od }}</p>
+                <p>do: {{ rezerwacja.data_do }}</p>
+                <p>ogolna cena: {{ rezerwacja.cena_ogolna }}zl</p>
+                <p>status: {{ rezerwacja.data_utworzenia }}</p>
+                <img src="{{ rezerwacja.auto.zdjecie.url }}" alt="zdjecie samochodu">
+                <a href="/"><button type="submit">Anuluj rezerwacje</button></a>     <!-- jak dodam anulowanie to zmienie / -->
+            </div>
+        
+        {% empty %}
+            <div class="empty">
+                <p>Nie masz jeszcze rezerwacji</p>
+                <a href="/cars/">Wybierz jakieś auto</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
