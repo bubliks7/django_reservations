@@ -27,11 +27,8 @@ def mojeRezerwacje(request):
     rezerwacje = Rezerwacja.objects.filter(klient=request.user)
     return render(request, "rental/myReservations.html", {'rezerwacje': rezerwacje})
 
-# @login_required
-# def anulujRezerwacje(request, pk):
-#     rezerwacje = get_object_or_404(Rezerwacja, pk=pk)
-#     if request.user != rezerwacje.klient:
-#         if request.method == "POST":
-#             rezerwacje.status == "cancelled"
-#             rezerwacje.save()
-#         return redirect('/')
+@login_required
+def anulujRezerwacje(request, pk):
+    Rezerwacja.objects.filter( pk=pk, klient=request.user).update(status='cancelled')
+
+    return redirect('rental:mojeRezerwacje')

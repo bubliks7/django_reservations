@@ -18,9 +18,17 @@
                 <p>od: {{ rezerwacja.data_od }}</p>
                 <p>do: {{ rezerwacja.data_do }}</p>
                 <p>ogolna cena: {{ rezerwacja.cena_ogolna }}zl</p>
-                <p>status: {{ rezerwacja.data_utworzenia }}</p>
+                <p>data utworzenia: {{ rezerwacja.data_utworzenia }}</p>
                 <img src="{{ rezerwacja.auto.zdjecie.url }}" alt="zdjecie samochodu">
-                <a href="/"><button type="submit">Anuluj rezerwacje</button></a>     <!-- jak dodam anulowanie to zmienie / -->
+
+                {% if rezerwacja.status != 'cancelled'  %}
+                    <form action="{% url 'rental:anulujRezerwacje' rezerwacja.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Anuluj rezerwacje</button>
+                    </form>
+                {% else %}
+                    <p>Rezerwacja anulowana</p>
+                {% endif %}
             </div>
         
         {% empty %}
