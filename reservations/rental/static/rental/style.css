@@ -59,3 +59,29 @@
 main h1 {
     text-align: center;
 }
+
+.anulowane{
+    text-align: center;
+}
+
+.anulowane p{
+    margin: 0 0 7px 0;
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-decoration: underline;
+}  
+
+.anulowane a{
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.anulowane a:hover{
+    text-decoration: underline;
+}
+.anulowane a:active{
+    color: blue;
+    letter-spacing: 2px;
+}

@@ -14,7 +14,7 @@
     <div class="container">
         {% for rezerwacja in rezerwacje %}
             <div class="panelRezerwacji">
-                <p>{{ rezerwacja.auto }}</p>
+                <p>{{ rezerwacja.auto }}r.</p>
                 <p>od: {{ rezerwacja.data_od }}</p>
                 <p>do: {{ rezerwacja.data_do }}</p>
                 <p>ogolna cena: {{ rezerwacja.cena_ogolna }}zl</p>
@@ -27,7 +27,10 @@
                         <button type="submit">Anuluj rezerwacje</button>
                     </form>
                 {% else %}
-                    <p>Rezerwacja anulowana</p>
+                    <div class="anulowane">
+                        <p>Rezerwacja anulowana</p>
+                        <a href="/cars/">Zarezerwuj cos nowego</a>
+                    </div>
                 {% endif %}
             </div>
         
