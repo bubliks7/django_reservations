@@ -29,6 +29,8 @@ def mojeRezerwacje(request):
 
 @login_required
 def anulujRezerwacje(request, pk):
-    Rezerwacja.objects.filter( pk=pk, klient=request.user).update(status='cancelled')
+    
+    if request.method == "POST":
+        Rezerwacja.objects.filter( pk=pk, klient=request.user).update(status='cancelled')
 
     return redirect('rental:mojeRezerwacje')
