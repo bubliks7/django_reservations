@@ -10,9 +10,13 @@
 {% endblock %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">zaloguj</button>
-    </form>
+    <div class="container">
+        <div class="panelLogowania">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">zaloguj</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
