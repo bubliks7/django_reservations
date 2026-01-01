@@ -15,7 +15,7 @@
             <h3>{{auta.marka}}</h3>
             <p>Model: {{auta.model}}</p>
             <p>Rok: {{auta.rok}}</p>
-            <p>Cena: {{auta.cena_za_dzien}} zl</p>
+            <p>Cena za dzień: {{auta.cena_za_dzien}} zl</p>
             <p class="opis">{{auta.opis}}</p>
             <img src="{{ auta.zdjecie.url }}" alt="obraz">
             <a href="{% url 'rental:rezerwuj' pk=auta.pk %}"><button class="rezerwuj">Zarezerwuj</button></a>

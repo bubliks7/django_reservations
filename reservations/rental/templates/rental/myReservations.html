@@ -21,6 +21,10 @@
                 <p>data utworzenia: {{ rezerwacja.data_utworzenia }}</p>
                 <img src="{{ rezerwacja.auto.zdjecie.url }}" alt="zdjecie samochodu">
 
+                <p class="statusRez">Status rezerwacji: 
+                    <span title="Jeśli rezerwacja będzie zaakceptowana, to już nie możesz jej anulować!">{{ rezerwacja.status }}</span>
+                </p>
+
                 {% if rezerwacja.status != 'cancelled'  %}
                     <form action="{% url 'rental:anulujRezerwacje' rezerwacja.pk %}" method="post">
                         {% csrf_token %}

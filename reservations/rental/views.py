@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from appointments.models import Samochod, Rezerwacja
 from django.contrib.auth.decorators import login_required
 from .forms import RezerwacjaForm
+from django.core.exceptions import ValidationError
 # from django.contrib import messages
 # Create your views here.
 
@@ -30,8 +31,11 @@ def mojeRezerwacje(request):
 
 @login_required
 def anulujRezerwacje(request, pk):
-    
     if request.method == "POST":
-        Rezerwacja.objects.filter( pk=pk, klient=request.user).update(status='cancelled')
+        rezerwacje = Rezerwacja.objects.filter(pk=pk, klient=request.user)
+        if rezerwacje.status == "confirmed":
+            raise ValidationError('Nie mozesz anulowac rezerwacji bo jest zaakceptowana')
+        else:
+            rezerwacje.update(status='cancelled')
 
     return redirect('rental:mojeRezerwacje')
