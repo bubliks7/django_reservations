@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Wyporzyczalnia
+{% endblock %}
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'appointments/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for auto in auta %}
+            <div class="panel">
+                <h3>{{auto.marka}}</h3>
+                <p>Model: {{auto.model}}</p>
+                <p>Rok: {{auto.rok}}</p>
+                <p>Cena za dzień: {{auto.cena_za_dzien}} zl</p>
+                <img src="{{ auto.zdjecie.url }}" alt="obraek samochodu">
+                <a href="{% url 'appointments:seeMore' pk=auto.pk %}"><button>Zobacz wiecej</button></a>
+                <a href="{% url 'rental:rezerwuj' pk=auto.pk %}"><button class="rezerwuj">Zarezerwuj</button></a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Zarezerwuj
+{% endblock %}
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rental/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="terminyRezerwacji">
+        <div class="wolne">
+            <h2>Wolne terminy w najbliższych 30 dniach</h2>
+            <ul>
+                {% for od, do in wolne %}
+                    <li>{{ od|date:"d.m.Y" }} - {{ do|date:"d.m.Y" }}</li>
+                {% empty %}
+                    <li>Brak wolnych terminow</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="panelUtworzenia">
+            <h2>Wybierz daty</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Zarezerwuj</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

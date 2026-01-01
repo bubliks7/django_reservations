@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    zarejestruj sie
+{% endblock %}
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel">
+            <h2>Witaj <span>{{ uzytkownik.username }}</span>!</h2>
+            <div>
+                <p>Nazwa uzytkownika: <span>{{ uzytkownik.username }}</span></p>
+                <p>Imie: <span>{{ uzytkownik.first_name }}</span></p>
+                <p>Nazwisko: <span>{{ uzytkownik.last_name }}</span></p>
+                <p>Email: <span>{{ uzytkownik.email }}</span></p>
+            </div>
+            <div>
+                <a class="zobaczRezerw" href="/rental/myReservations/">Zobacz swoje rezerwacje</a>
+                <form action="/users/logout/" method="post">
+                    {% csrf_token %}
+                    <button class="logoutbutton">Wyloguj sie</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
