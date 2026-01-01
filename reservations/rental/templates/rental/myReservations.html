@@ -29,6 +29,11 @@
                     <form action="{% url 'rental:anulujRezerwacje' rezerwacja.pk %}" method="post">
                         {% csrf_token %}
                         <button type="submit">Anuluj rezerwacje</button>
+                        {% for message in messages %}
+                            <ul>
+                                <li class="komunikat">{{ message }}</li>
+                            </ul>
+                        {% endfor %}
                     </form>
                 {% else %}
                     <div class="anulowane">
