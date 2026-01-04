@@ -23,7 +23,7 @@
         </div>
         <div class="panelUtworzenia">
             <h2>Wybierz daty</h2>
-            <form method="post">
+            <form id="createForm" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Zarezerwuj</button>
@@ -34,9 +34,29 @@
 
 {% block scripts %}
     <script>
-        const clickValues = document.querySelectorAll('#clickValues');
-        // trzeba iterowac jak cos
+        const form = document.getElementById('createForm');
 
-        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const dataForm = new FormData(form);
+
+            fetch('', {
+                method: 'POST',
+                body: dataForm,
+                headers: {
+                    'X_CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success){
+                    alert("Zapisano")
+                } else{
+                    alert(data.error);
+                }
+            })
+            .catch(err => console.error(err));
+        });
     </script>
 {% endblock %}

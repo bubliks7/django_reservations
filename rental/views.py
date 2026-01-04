@@ -20,6 +20,10 @@ def rezerwuj(request, pk):
             rezerwacja.klient = request.user
             rezerwacja.auto = auto
             rezerwacja.save()
+
+            if request.headers.get('x-requested-with') == 'XMLHyypRequest':
+                return JsonResponse({'succes': True})
+
             return redirect('/rental/myReservations/')
     else:
         form = RezerwacjaForm()
