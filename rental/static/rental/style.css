@@ -118,9 +118,18 @@ ul{
     align-items: center;
 }
 
+.wolne{
+    margin: 20px;
+}
+
 .wolne ul li {
     text-align: center;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    word-spacing: 5px;
     color: rgb(0, 0, 159);
+    cursor: pointer;
+}
+
+.wolne ul li:hover{
     font-weight: bold;
 }

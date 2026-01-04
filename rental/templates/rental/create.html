@@ -13,7 +13,7 @@
     <div class="terminyRezerwacji">
         <div class="wolne">
             <h2>Wolne terminy w najbliższych 30 dniach</h2>
-            <ul>
+            <ul id="clickValues">
                 {% for od, do in wolne %}
                     <li>{{ od|date:"d.m.Y" }} - {{ do|date:"d.m.Y" }}</li>
                 {% empty %}
@@ -30,4 +30,13 @@
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const clickValues = document.querySelectorAll('#clickValues');
+        // trzeba iterowac jak cos
+
+        
+    </script>
 {% endblock %}
