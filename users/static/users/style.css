@@ -1,0 +1,113 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.panel{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 30vw;
+    height: 40vh;
+    margin: 5px auto;
+    padding: 20px;
+}
+
+.komunikat{
+    text-align: center;
+}
+
+a {
+    margin: 0 15px;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+
+.logoutbutton{
+    padding: 6px;
+    border: none;
+    border-radius: 15px;
+    background-color: blue;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.3s ease;
+}
+.logoutbutton:hover{
+    background-color: rgb(3, 3, 144);
+    border-radius: 10px;
+}
+
+.zobaczRezerw{
+    font-weight: bold;
+    margin: 10px 0 0 0;
+}
+
+h2 span{
+    text-decoration: underline;
+    color: blue;
+}
+
+p span{
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.linki{
+    text-align: center;
+}
+
+.panelLogowania, .panelRejestracji{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 5px auto;
+    padding: 20px;
+}
+
+.panelLogowania button, .panelRejestracji button{
+    padding: 6px;
+    border: none;
+    border-radius: 15px;
+    background-color: blue;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.3s ease;
+}
+.panelLogowania button, .panelRejestracji button:hover{
+    background-color: rgb(3, 3, 144);
+    border-radius: 10px;
+}
+
+.panelRejestracji input, .panelLogowania input{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px 0 0 0;
+}
+
+.panelRejestracji p, .panelLogowania p{
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.panelRejestracji label, .panelLogowania label{
+    text-align: left;
+}
+
+.panelRejestracji input, .panelLogowania input{
+    width: 100%;
+    padding: 2px;
+    box-sizing: border-box;
+}

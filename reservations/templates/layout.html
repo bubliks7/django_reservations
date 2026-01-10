@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% block static %}
+
+    {% endblock %}
+
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+            body{
+                background-color: #e3e3e3;
+            }
+            nav{
+                display: flex;
+                justify-content: space-between;
+            }
+            nav ul{
+                display: flex;
+            }
+            nav ul li{
+                list-style-type: none;
+                margin-top: 10px;
+            }
+            nav ul li a {
+                margin: 0 10px 0 10px;
+                text-decoration: none;
+                color: blue;
+                transition: 0.2s;
+            }
+
+            nav ul li a:hover{
+                color: rgb(0, 0, 159);
+                text-decoration: underline;
+            }
+
+            form .logoutBtn{
+                background-color: #ffffff00;
+                font-size: 15.5px;
+                margin-top: 10px;
+                border: none;
+                text-decoration: none;
+                color: blue;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+            
+            form .logoutBtn:hover{
+                color: rgb(0, 0, 159);
+                text-decoration: underline;
+            }
+
+            nav h2{
+                margin: 10px;
+            }
+
+            nav h2 a {
+                text-decoration: none;
+                color: blue;
+                transition: 0.2s;
+            }
+
+            nav h2 a:hover{
+                color: rgb(0, 0, 159);
+            }
+    </style>
+
+    {% block extra_head %}
+    
+    {% endblock %}
+</head>
+
+<body>
+    <nav>
+        <h2><a href="/">Wyporzyczalnia</a></h2>
+        <ul>
+            <li><a href="/">Strona główna</a></li>
+            <li><a href="/cars/">Samochody</a></li>
+            {% if not user.is_authenticated %}
+                <li><a href="/users/login/">Zaloguj sie</a></li>
+                <li><a href="/users/register/">Zarejestruj sie</a></li>
+            {% else %}
+                <li><a href="/rental/myReservations/">Moje rezerwacje</a></li>
+                </li>
+                    <form action="/users/logout/" method="post">
+                        {% csrf_token %}
+                        <button class="logoutBtn">Wyloguj sie</button>
+                    </form>
+                </li>
+                <li><a href="/users/accound/">Konto</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>
+<!-- https://watermarkly.com/pl/upscale-image/ -->
