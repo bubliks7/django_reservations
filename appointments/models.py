@@ -57,3 +57,32 @@ class Rezerwacja(models.Model):
 
     def __str__(self):
         return f"{self.auto} - {self.data_od} - {self.data_do}"
+
+
+class Opinia(models.Model):
+    rezerwacja = models.OneToOneField('Rezerwacja', on_delete=models.CASCADE, related_name='review')
+    uzytkownik = models.ForeignKey(User, on_delete=models.CASCADE)
+    auto = models.ForeignKey('Samochod', on_delete=models.CASCADE, related_name='opinie')
+    ocena = models.PositiveSmallIntegerField(choices=[(i,i) for i in range(1,6)])
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        if self.rezerwacja.klient != self.uzytkownik:
+            raise ValidationError("Nie mozesz dodac opini do nie swojej rezerwacji")
+        
+        if self.rezerwacja.auto != self.auto:
+            raise ValidationError("Samochod ktory oceniasz nie zgadza sie z rezerwacja")
+        
+        if self.rezerwacja.data_do > date.today():
+            raise ValidationError("Nie mozesz dodac opini przed zakonczeniem rezerwacji")
+        
+        if self.rezerwacja.status != "confirmed":
+            raise ValidationError("Mozesz dodac opinie tylko do zatwierdzonej rezerwacji")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.auto} - {self.ocena}/5"

@@ -34,6 +34,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,14 @@ INSTALLED_APPS = [
     'appointments',
     'rental',
     'users',
+    'opinions',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Mój Panel Admina",
+    "site_header": "Wyporzyczalnia",
+    "welcome_sign": "Witaj w panelu!",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

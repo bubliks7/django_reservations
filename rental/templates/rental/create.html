@@ -15,7 +15,7 @@
             <h2>Wolne terminy w najbliższych 30 dniach</h2>
             <ul id="clickValues">
                 {% for od, do in wolne %}
-                    <li>{{ od|date:"d.m.Y" }} - {{ do|date:"d.m.Y" }}</li>
+                    <li><button type="button">{{ od|date:"d.m.Y" }} - {{ do|date:"d.m.Y" }}</button></li>
                 {% empty %}
                     <li>Brak wolnych terminow</li>
                 {% endfor %}
@@ -30,33 +30,4 @@
             </form>
         </div>
     </div>
-{% endblock %}
-
-{% block scripts %}
-    <script>
-        const form = document.getElementById('createForm');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const dataForm = new FormData(form);
-
-            fetch('', {
-                method: 'POST',
-                body: dataForm,
-                headers: {
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.success){
-                    alert("Zapisano")
-                } else{
-                    alert(data.error);
-                }
-            })
-            .catch(err => console.error(err));
-        });
-    </script>
 {% endblock %}

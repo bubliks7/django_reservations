@@ -5,6 +5,8 @@ from .forms import RezerwacjaForm
 from django.contrib import messages
 from datetime import date, timedelta
 from django.http import JsonResponse
+from django.db.models import Case, When, Value, IntegerField
+from django.utils import timezone
 # Create your views here.
 
 @login_required
@@ -37,7 +39,20 @@ def rezerwuj(request, pk):
 
 @login_required
 def mojeRezerwacje(request):
-    rezerwacje = Rezerwacja.objects.filter(klient=request.user)
+    rezerwacje = (
+        Rezerwacja.objects.filter(klient=request.user).annotate(
+            sort_status=Case(
+                When(status="cancelled", then=Value(1)),
+                default=Value(0),
+                output_field=IntegerField(),
+            )
+        )
+        .order_by("sort_status", "-data_utworzenia")
+    )
+
+    for r in rezerwacje:
+        r.zakonczona = r.data_do < timezone.now().date()
+
     return render(request, "rental/myReservations.html", {'rezerwacje': rezerwacje})
 
 @login_required

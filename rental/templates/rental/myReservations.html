@@ -41,6 +41,11 @@
                         <a href="/cars/">Zarezerwuj cos nowego</a>
                     </div>
                 {% endif %}
+
+                {% if rezerwacja.zakonczona%}
+                    <a href="#"><button>Wystaw opinie</button></a>
+                {% endif %}
+
             </div>
         
         {% empty %}
